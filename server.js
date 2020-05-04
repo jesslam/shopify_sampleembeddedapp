@@ -27,7 +27,12 @@ app.prepare().then(() => {
             scopes: ['read_products'],
             afterAuth(ctx) {
                 const { shop, accessToken } = ctx.session;
-
+                // Set ctx.cookies to sameSite and secure to load app in Chrome
+                ctx.cookies.set('shopOrigin', shop, {
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'none'
+                });
                 ctx.redirect('/');
             },
         }),
