@@ -12,6 +12,7 @@ class Index extends React.Component {
                 <TitleBar
                 primaryAction = {{
                     content: 'Select products', 
+                    onAction: () => this.setState({ open: true }),
                 }} />
                 {/* Add ResourcePicker component to primary action button on EmptyState */}
                 <ResourcePicker
@@ -34,9 +35,12 @@ class Index extends React.Component {
         );
     }
     handleSelection = (resources) => {
+        const idsFromResources = resources.selection.map((product) => product.id);
         this.setState({ open: false })
-        console.log(resources)
+        console.log(idsFromResources)
     };
 }
 
 export default Index;
+
+/* Install GraphiQL: Add dev store URL, access to Write products, install */

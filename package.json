@@ -27,9 +27,12 @@
   "dependencies": {
     "@shopify/app-bridge-react": "^1.21.3",
     "@shopify/koa-shopify-auth": "^3.1.61",
+    "@shopify/koa-shopify-graphql-proxy": "^4.0.0",
     "@shopify/polaris": "^4.21.0",
     "@zeit/next-css": "^1.0.1",
+    "apollo-boost": "^0.4.8",
     "dotenv": "^8.2.0",
+    "graphql": "^15.0.0",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
     "koa": "^2.11.0",
@@ -37,6 +40,7 @@
     "mkdirp": "^1.0.4",
     "next": "^9.3.6",
     "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "urix": "^0.1.0"
   }
