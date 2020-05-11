@@ -54,4 +54,3 @@ class Index extends React.Component {
 
 export default Index;
 
-/* Install GraphiQL: Add dev store URL, access to Write products, install */
