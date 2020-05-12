@@ -9,6 +9,8 @@ const session = require('koa-session');
 dotenv.config()
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy')
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy')
+const getSubscriptionUrl = require('./server/getSubscriptionUrl');
+
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -26,7 +28,7 @@ app.prepare().then(() => {
             apiKey: SHOPIFY_API_KEY,
             secret: SHOPIFY_API_SECRET_KEY,
             scopes: ['read_products', 'write_products'],
-            afterAuth(ctx) {
+            async afterAuth(ctx) {
                 const { shop, accessToken } = ctx.session;
                 // Set ctx.cookies to sameSite and secure to load app in Chrome
                 ctx.cookies.set('shopOrigin', shop, {
@@ -34,7 +36,7 @@ app.prepare().then(() => {
                     secure: true,
                     sameSite: 'none'
                 });
-                ctx.redirect('/');
+                await getSubscriptionUrl(ctx, accessToken, shop);
             },
         }),
     );
